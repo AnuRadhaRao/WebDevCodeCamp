@@ -18,6 +18,10 @@ $("input[type='text']").keypress(function(){
 		var todo_element = $(this).val();
 		$(this).val("");
 		//create a new entry into list
-		$("ul").append("<li><span>X </span>" +todo_element +"</li>");
+		$("ul").append("<li><span><i class='fas fa-trash-alt'></i> </span>" +todo_element +"</li>");
 	}
+});
+
+$(".fa-pen-square").click(function(){
+	$("input[type='text']").fadeToggle()
 });
