@@ -18,6 +18,6 @@ $("input[type='text']").keypress(function(){
 		var todo_element = $(this).val();
 		$(this).val("");
 		//create a new entry into list
-		$("ul").append("<li><span>X</span>" +todo_element +"</li>");
+		$("ul").append("<li><span>X </span>" +todo_element +"</li>");
 	}
 });
