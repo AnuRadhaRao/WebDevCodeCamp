@@ -33,16 +33,16 @@ function setupSquares(){
 	for(var i = 0; i < squares.length; i++){	 
 		squares[i].addEventListener("click", function() {
 			//grab color of clicked squares
-			var clickedColor = this.style.background;
+			var clickedColor = this.style.backgroundColor;
 			//compare color to pickedColor
 			if(clickedColor === pickedColor) {
 				messageDisplay.textContent = "Correct!";
 				resetButton.textContent = "Play Again?";
 				changeColors(clickedColor);
-				h1.style.background = clickedColor;
+				h1.style.backgroundColor = clickedColor;
 											 
 			} else {
-				this.style.background = "#232323";
+				this.style.backgroundColor = "#232323";
 				messageDisplay.textContent = "Try Again";
 			}
 		});
