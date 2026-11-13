@@ -57,6 +57,7 @@ li:nth-child(2n){
 
 #container {
 	width: 360px;
+	max-width: 100%;
 	margin: 100px auto;
 	background: #f7f7f7;
 	box-shadow: 0 0 3px rgba(0 ,0, 0, 0.1);
