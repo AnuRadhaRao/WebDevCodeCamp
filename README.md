@@ -4,6 +4,8 @@ Two small front-end exercises I built in 2020 while working through a web
 development bootcamp. Both are plain HTML, CSS and JavaScript with no build
 step.
 
+Live demo: <https://anuradharao.github.io/WebDevCodeCamp/>
+
 | Project | What it does | Stack |
 | --- | --- | --- |
 | [ColorGame](ColorGame/) | Shows an RGB value; pick the matching square. Easy mode uses 3 squares, hard mode 6. | HTML, CSS, vanilla JS (DOM events) |
@@ -20,3 +22,24 @@ python3 -m http.server 8000
 ```
 
 The to-do list keeps items in the page only, so they reset on reload.
+
+## Checks and deployment
+
+Every pull request and every push to `master` runs [CI](.github/workflows/ci.yml):
+
+- **Lint:** ESLint for the JavaScript (the vendored jQuery is skipped),
+  Stylelint for the CSS, and HTMLHint for the HTML.
+- **Smoke tests:** Playwright opens both apps in headless Chromium and plays
+  them: winning and losing the Color Game, switching to easy mode, and adding,
+  completing and deleting to-dos.
+- **Deploy:** on `master`, once lint and tests pass, the two apps and a small
+  landing page are published to GitHub Pages.
+
+To run the same checks locally (needs Node 22 and Python 3):
+
+```sh
+npm ci
+npx playwright install chromium
+npm run lint
+npm test
+```

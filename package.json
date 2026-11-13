@@ -1,0 +1,22 @@
+{
+  "name": "webdevcodecamp",
+  "private": true,
+  "description": "Color Game and To-do List exercises, with lint and browser smoke tests",
+  "scripts": {
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "lint:js": "eslint .",
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint:html": "htmlhint \"**/*.html\"",
+    "test": "playwright test",
+    "serve": "python3 -m http.server 8000"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.63.0",
+    "eslint": "10.14.0",
+    "globals": "17.14.0",
+    "htmlhint": "1.9.2",
+    "stylelint": "18.0.0",
+    "stylelint-config-recommended": "19.0.0"
+  }
+}
