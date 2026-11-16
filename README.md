@@ -21,7 +21,8 @@ python3 -m http.server 8000
 # then open http://localhost:8000/ColorGame/ or http://localhost:8000/TodoList/
 ```
 
-The to-do list keeps items in the page only, so they reset on reload.
+The to-do list saves items in your browser's localStorage, so they survive a
+reload. The three sample items show only until you change the list.
 
 ## Checks and deployment
 
@@ -31,7 +32,7 @@ Every pull request and every push to `master` runs [CI](.github/workflows/ci.yml
   Stylelint for the CSS, and HTMLHint for the HTML.
 - **Smoke tests:** Playwright opens both apps in headless Chromium and plays
   them: winning and losing the Color Game, switching to easy mode, and adding,
-  completing and deleting to-dos.
+  completing and deleting to-dos, including that they survive a reload.
 - **Deploy:** on `master`, once lint and tests pass, the two apps and a small
   landing page are published to GitHub Pages.
 
