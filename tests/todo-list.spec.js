@@ -38,3 +38,36 @@ test("trash icon deletes a to-do", async ({ page }) => {
   await first.locator("span").click();
   await expect(page.locator("li")).toHaveCount(2);
 });
+
+test("to-dos survive a reload", async ({ page }) => {
+  const input = page.getByPlaceholder("Add New");
+  await input.fill("Remember me");
+  await input.press("Enter");
+  await page.locator("li").first().click();
+  const second = page.locator("li").nth(1);
+  await second.hover();
+  await second.locator("span").click();
+  await expect(page.locator("li")).toHaveCount(3);
+
+  await page.reload();
+
+  await expect(page.locator("li")).toHaveCount(3);
+  await expect(page.locator("li").first()).toHaveClass(/completed/);
+  await expect(page.locator("li").nth(1)).toHaveText(/Study at the library/);
+  await expect(page.locator("li").last()).toHaveText(/Remember me/);
+});
+
+test("still works when localStorage is blocked", async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(globalThis, "localStorage", {
+      get() {
+        throw new Error("blocked");
+      },
+    });
+  });
+  await page.reload();
+  await expect(page.locator("li")).toHaveCount(3);
+  await page.getByPlaceholder("Add New").fill("No storage");
+  await page.getByPlaceholder("Add New").press("Enter");
+  await expect(page.locator("li")).toHaveCount(4);
+});
